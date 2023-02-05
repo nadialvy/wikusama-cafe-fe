@@ -1,0 +1,3 @@
+<template>
+    detail menu
+</template>
