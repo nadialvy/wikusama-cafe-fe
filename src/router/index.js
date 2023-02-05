@@ -6,6 +6,7 @@ import DetailMenu from "../views/DetailMenu.vue";
 import Table from "../views/Table.vue";
 import Order from "../views/Order.vue";
 import User from "../views/User.vue";
+import Login from "../views/Login.vue";
 
 const routes = [
     {
@@ -37,6 +38,11 @@ const routes = [
         path: "/order",
         name: "order",
         component: Order,
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: Login,
     },
 ]
 
