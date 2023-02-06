@@ -24,7 +24,6 @@
                         </svg>
                     </span>
                     <input @keyup.enter="search()" v-model="searchKey" type="text" class="pl-12 py-2 rounded-3xl text-gray-500 bg-white border placeholder:font-light placeholder:text-sm border-gray-200 focus:outline-none focus:bg-white" placeholder="Search...">
-                    <!-- <input type="text" class="pl-12 py-2 rounded-3xl text-gray-500 bg-white border placeholder:font-light placeholder:text-sm border-gray-200 focus:outline-none focus:bg-white" placeholder="Search..."> -->
                 </div>
                 <button v-on:click="getData()" @click="handleAllClick" :class="[!isAllClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white">All</button>
                 <button v-on:click="getDataFood()" @click="handleFoodClick" :class="[!isFoodClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white">Food</button>
@@ -34,7 +33,7 @@
 
             <!-- list menu -->
             <div v-if="loading">
-                <img src="../assets/loading.gif" alt="Loading..." class="mx-auto w-20 my-20">
+                <img src="../assets/loading.gif" alt="Loading..." class="mx-auto my-auto w-20">
             </div>
             <div v-else-if="notFound">
                 <p class="text-center text-2xl font-bold mt-32 mb-44">Menu Not Found</p>
