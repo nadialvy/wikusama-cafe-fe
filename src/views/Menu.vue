@@ -13,7 +13,7 @@
     <div class="flex h-screen">
         <Sidebar />
         <Navbar />
-        <main class="flex-1 bg-orange-50 p-8 mt-16">
+        <main class="w-10/12 flex-1 bg-orange-50 p-8 mt-16">
 
             <!-- search and add button -->
             <div class="pb-8 flex justify-between items-center">
