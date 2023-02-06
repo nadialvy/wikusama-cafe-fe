@@ -2,7 +2,7 @@
   <header class="bg-white text-gray-800 py-6 fixed top-0 w-10/12 left-0 z-10" style="left: 253px;">
     <div class="flex justify-between px-8 items-center">
         <div>
-            <p>Tuesday, 31 Jan 2023</p>
+            <p>{{ currentDate }}</p>
         </div>
         <div>
             <div class="flex justify-around items-start gap-x-5">
@@ -17,6 +17,28 @@
   </header>
 </template>
 
-<style>
+<script>
+    export default{
+        data(){
+            return{
+                currentDate: "",
+                months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            }
+        },
+        methods:{
+           // date
+            getCurrentDate(){
+            let date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth();
+            let year = date.getFullYear();
+            let dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-</style>
+            this.currentDate = dayName[date.getDay()] + ", " + (day < 10 ? '0' : '') + day + " - " + this.months[month] + " - " + year;
+            }
+        },
+        mounted(){
+            this.getCurrentDate()
+        }
+    }
+</script>
