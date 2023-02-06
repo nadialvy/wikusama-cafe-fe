@@ -82,7 +82,7 @@
                                                 <img @click="getEditModal(order)" src="../assets/edit.png" class="w-5 h-5" alt="Edit">
                                             </div>
                                             <div v-if="order.status === 'paid'">
-                                                <img @click="goToInvoice(order.order_id)" src="../assets/list.png" alt="detail" class="w-6 h-6">
+                                                <img @click="showOrderDetail(order.order_id)" v-on:click="getOrderDetail(order.order_id)" src="../assets/list.png" alt="detail" class="w-6 h-6">
                                             </div>
                                             <img @click="showConfirmDialog(order.order_id)" src="../assets/delete.png" alt="Delete" class="w-5 h-5">
                                         </div>
@@ -111,18 +111,34 @@
         </div>
 
         <!-- order detail information modal -->
-        <div>
-            <div v-if="orderDetailModal" class="fixed inset-0 z-50">
-                <div class="absolute inset-0 bg-black opacity-50" @click="orderDetailModal = false"></div>
-                <div class="top-80 relative pt-6 pb-8 px-6 mx-auto my-auto bg-white rounded-lg w-full h-full max-w-xl md:h-auto">
-                    <p class="font-bold text-lg">Order Detail Information {{this.order_id}}</p>
-                    <div class="flex justify-end mt-4">
-                        <button @click="orderDetailModal = false" class="bg-gray-300 py-1 px-10 text-gray-700 rounded-sm mr-4">Cancel</button>
-                        <button @click="deleteData(order_id)" class="bg-primaryRed hover:bg-hoverPrimaryRed py-1 px-10 text-white rounded-sm">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+          <div v-if="showOrderDetailModal" class="fixed inset-0 z-50">
+              <div class="absolute inset-0 bg-black opacity-50" @click="showOrderDetailModal = false"></div>
+              <div class="top-10 relative pt-6 pb-8 px-6 mx-auto my-auto bg-white rounded-lg w-full h-full max-w-5xl md:h-auto">
+                  <!-- <p>{{orderDetail}}</p> -->
+                  <table class="min-w-full">
+                    <thead class="bg-transparent border-b">
+                        <tr class="text-center">
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">No</th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Name</th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Qty</th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Price</th>
+                            <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(dt, i) in orderDetail" :key="i" class="bg-transparent border-b transition duration-300 text-center ease-in-out hover:bg-gray-100">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ i+1 }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-10 whitespace-nowrap">{{ dt.menu_name }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ dt.quantity }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Rp{{ dt.price }}</td>
+                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">Rp{{ dt.price * dt.quantity }}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                  <p class="mt-4 font-bold text-orange-500">Sub total: Rp{{totalPrice}}</p>
+                  <button @click="goToInvoice(this.order_id)" class="border border-orange-500 py-1 px-10 text-orange-500 rounded-lg w-full hover:bg-orange-500 hover:text-white mt-4">Print Invoice</button>
+              </div>
+          </div>
 
         <!-- add edit menu modal -->
         <div v-if="showModal" class="fixed inset-0 z-50">
@@ -210,7 +226,7 @@ export default{
         action: '',
         showDropdown: false,
         showDialog: false,
-        orderDetailModal: false,
+        showOrderDetailModal: false,
 
         // get data
         orders: [],
@@ -233,6 +249,7 @@ export default{
 
         // order detail
         orderDetail: [],
+        totalPrice: '',
 
         // search and filter
         searchKey: '',
@@ -359,6 +376,23 @@ export default{
       this.isDatepickerDisabled = true;
       this.searchKey = '';
       this.date = null;
+    },
+    // ui detail
+    showOrderDetail(order_id){
+        this.order_id = order_id;
+        this.showOrderDetailModal = true;
+    },
+    // function detail
+    getOrderDetail(order_id){
+      let headers = authHeader();
+      axios.get(this.baseUrl + '/orderdetail/' + order_id, { headers }).then((response) => {
+        console.log('halo');
+        console.log(response.data.total_price);
+        this.orderDetail = response.data.data;
+        this.totalPrice = response.data.total_price;
+      }).catch((error) => {
+        this.createAlert(error.response.data, 'danger', 3000);
+      });
     },
     // ui delete
     showConfirmDialog(order_id){
