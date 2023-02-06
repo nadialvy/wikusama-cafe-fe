@@ -5,8 +5,11 @@
 </script>
 
 <template>
-    <div class="bg-orange-100">
-        <div class="flex justify-between items-center">
+    <div class="bg-orange-100 bg-cover w-full ">
+        <div v-if="loading" class="bg-customBlack w-full">
+            <img src="../assets/loading.gif" class="mx-auto my-auto w-20 h-20"/>
+        </div>
+        <div v-else class="flex justify-between items-center">
             <div class="w-1/3 px-12">
                 <div>
                     <h1 class="text-blue-300 text-2xl text-center font-semibold">Sign In</h1>
@@ -31,5 +34,55 @@
 </template>
 
 <script>
+export default {
+    data(){
+        return{
+            username: '',
+            password: '',
+            loading: false,
+        }
+    },
+    computed: {
+        loggedIn(){
+            return this.$store.state.auth.status.loggedIn;
+        }
+    },
+    created(){
+        if(this.loggedIn){
+            this.$router.push('/');
+        }
+    },
+    methods: {
+        handleLogin(){
+            this.loading = true;
 
+            let form = {
+                username: this.username,
+                password: this.password
+            }
+
+            this.$store.dispatch('auth/login', form).then(
+                () => {
+                    this.$router.push('/');
+                    this.loading = false;
+                },
+                (error) => {
+                    this.loading = false;
+                    createToast(error.message, {
+                        position: 'top-right',
+                        type: 'error',
+                        timeout: 3000,
+                        dismissible: true,
+                        pauseOnFocusLoss: true,
+                        pauseOnHover: true,
+                        closeOnClick: true,
+                        closeButton: true,
+                        icon: true,
+                        rtl: false,
+                    });
+                }
+            )
+        }
+    }
+}
 </script>
