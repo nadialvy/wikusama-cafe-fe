@@ -40,7 +40,7 @@
                 <p class="text-center text-2xl font-bold mt-32 mb-44">Menu Not Found</p>
             </div>
             <div v-else>
-                <div v-auto-animate class="mb-12 flex flex-wrap justify-center items-start gap-x-9 gap-y-10">
+                <div v-auto-animate class="flex flex-wrap justify-center items-start gap-x-9">
                     <div v-for="(menu, i) in menus" :key="i" @click="goToDetail(menu.menu_id)">
                         <MenuCard v-bind:img="'http://127.0.0.1:8000/images/' + menu.menu_image_name" v-bind:name="menu.menu_name" v-bind:price="menu.price.toString()"/>
                     </div>
