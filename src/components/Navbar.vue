@@ -4,13 +4,17 @@
         <div>
             <p>{{ currentDate }}</p>
         </div>
-        <div>
+        <div class="relative hover:cursor-pointer" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
             <div class="flex justify-around items-start gap-x-5">
                 <img src="../assets/user.jpg" alt="User Default Picture" class="w-10 rounded-lg">
                 <div>
                     <p class="text-sm text-gray-500">Hello, {{ userData.user.user_name }}!</p>
                     <p class="text-sm text-gray-500">{{ userData.user.role }}</p>
                 </div>
+            </div>
+            <div class="absolute right-0 mt-0 bg-white rounded-lg shadow-lg" v-if="showDropdown">
+                <a class="block px-14 py-2 rounded-lg text-sm text-blue-300 hover:bg-orange-200">Profile</a>
+                <a @click="handleLogout" class="block px-14 py-2 rounded-lg text-sm text-blue-300 hover:bg-orange-200">Logout</a>
             </div>
         </div>
     </div>
@@ -21,6 +25,7 @@
     export default{
         data(){
             return{
+                showDropdown: false,
                 userData: [],
                 currentDate: "",
                 months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -37,7 +42,28 @@
 
                 this.currentDate = dayName[date.getDay()] + ", " + (day < 10 ? '0' : '') + day + " - " + this.months[month] + " - " + year;
             },
-
+            handleLogout(){
+                this.$store.dispatch('auth/logout').then(
+                () => {
+                    this.$router.push('/login')
+                },
+                (error) => {
+                    this.loading = false;
+                    createToast(error.message, {
+                        position: 'top-right',
+                        type: 'error',
+                        timeout: 3000,
+                        dismissible: true,
+                        pauseOnFocusLoss: true,
+                        pauseOnHover: true,
+                        closeOnClick: true,
+                        closeButton: true,
+                        icon: true,
+                        rtl: false,
+                    });
+                }
+            )
+            }
         },
         computed: {
             userData() {

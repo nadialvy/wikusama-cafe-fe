@@ -5,8 +5,8 @@
 </script>
 
 <template>
-    <div class="bg-orange-100 bg-cover w-full ">
-        <div v-if="loading" class="bg-customBlack w-full">
+    <div class="bg-orange-100 bg-cover w-full min-height-100vh">
+        <div v-if="loading" class="py-80">
             <img src="../assets/loading.gif" class="mx-auto my-auto w-20 h-20"/>
         </div>
         <div v-else class="flex justify-between items-center">
@@ -63,7 +63,9 @@ export default {
 
             this.$store.dispatch('auth/login', form).then(
                 () => {
-                    this.$router.push('/');
+                    if(this.$store.state.auth.user.user.role === 'cashier'){
+                        this.$router.push('/menu');
+                    }
                     this.loading = false;
                 },
                 (error) => {
