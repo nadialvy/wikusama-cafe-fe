@@ -11,21 +11,20 @@
 
 <template>
   <div class="flex h-screen">
-      <Sidebar />
-      <Navbar />
-      <main class="w-10/12 flex-1 bg-orange-50 p-8 mt-20">
+    <Sidebar />
+    <Navbar />
+    <main class="w-10/12 flex-1 bg-orange-50 p-8 mt-20">
 
-        <!-- add table -->
         <div class="flex justify-between items-center">
-          <div class="flex justify-start items-center">
+            <div class="flex justify-start items-center">
             <div class="border-2 border-orange-300 text-blue-300 font-semibold text-5xl w-50 rounded-sm px-4 py-2"></div>
             <p class="ml-4 text-blue-300 mr-10">Available table</p>
             <div class="border-2 border-orange-300 bg-orange-200 text-blue-300 text-opacity-50 font-semibold text-5xl w-50 rounded-sm px-4 py-2"></div>
-            <p class="ml-4 text-blue-300">Unavailable table</p>
-          </div>
-          <div>
-            <button class="border border-orange-500 px-10 py-1 text-orange-500 text-sm rounded-lg hover:bg-orange-500 hover:text-white" v-on:click="resetForm()" @click="showModal = true">Add Table +</button>
-          </div>
+                <p class="ml-4 text-blue-300">Unavailable table</p>
+            </div>
+            <div>
+                <button v-if="userRole === 'admin'" class="border border-orange-500 px-10 py-1 text-orange-500 text-sm rounded-lg hover:bg-orange-500 hover:text-white" v-on:click="resetForm()" @click="showModal = true">Add Table +</button>
+            </div>
         </div>
 
         <!-- table section -->
@@ -78,10 +77,13 @@
                 // search
                 searchKey: "",
                 notFound: false,
+
+                userRole: "",
             }
         },
         mounted(){
             this.getData();
+            this.userRole = this.$store.state.auth.user.user.role;
         },
         watch: {
             searchKey: _.debounce(function(newVal){
@@ -89,7 +91,7 @@
                     this.notFound = false;
                     let headers = authHeader();
 
-                    axios.get(this.baseUrl + 'table/search/' + this.searchKey, { header }).then((response) => {
+                    axios.get(this.baseUrl + 'table/search/' + this.searchKey, { headers }).then((response) => {
                         this.notFound = false;
                         this.tables = response.data.data;
                     }).catch((error) => {

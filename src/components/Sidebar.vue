@@ -9,8 +9,8 @@
     <div class="border-t-2 border-gray-200"></div>
     <nav>
         <ul class="list-none px-6">
-            <p class="text-gray-400 text-sm mb-4 mt-8">Home</p>
-            <router-link to="/">
+            <p class="text-gray-400 text-sm mb-4 mt-8" v-if="userRole === 'manager'">Home</p>
+            <router-link to="/" v-if="userRole === 'manager'">
                 <li class="mb-2">
                     <img src="../assets/Category.svg" class="inline mr-5" />
                     <a href="#" class="text-gray-400 hover:text-orange-500 text-sm font-light">Dashboard</a>
@@ -52,7 +52,7 @@
                     </div>
                 </li>
             </router-link>
-            <router-link to="/user">
+            <router-link to="/user" v-if="userRole === 'admin'">
                 <li class="mb-6">
                     <div class="flex justify-between items-center">
                         <div class="flex justify-start">
@@ -69,4 +69,12 @@
 </template>
 
 <script>
+export default {
+  computed: {
+    userRole() {
+      let userData = JSON.parse(localStorage.getItem("user"))
+      return userData ? userData.user.role : ""
+    }
+  }
+}
 </script>

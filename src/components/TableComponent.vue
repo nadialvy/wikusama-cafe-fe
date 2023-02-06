@@ -17,7 +17,7 @@
         <div v-else class="border-4 border-orange-300 bg-orange-200 w-50 rounded-lg p-8">
             <p class="text-center text-blue-300 text-opacity-50 font-semibold text-3xl truncate">{{ tableNumber }}</p>
         </div>
-        <div class="flex justify-around items-center mt-2 gap-x-2 mb-10">
+        <div class="flex justify-around items-center mt-2 gap-x-2 mb-10" v-if="userRole === 'admin'">
             <button v-on:click="editData(tableNumber)" @click="showModal = true" class="px-4 py-1 border border-orange-500 text-sm text-orange-500 hover:bg-orange-600 hover:text-white rounded-lg">Edit</button>
             <button @click="showConfirmDialog = true" class="px-4 py-1 border border-red-500 text-sm text-red-500 hover:bg-red-500 hover:text-white rounded-lg">Delete</button>
         </div>
@@ -67,7 +67,12 @@
 
                 // v-model
                 table_number: '',
+
+                userRole: '',
             }
+        },
+        mounted(){
+            this.userRole = this.$store.state.auth.user.user.role;
         },
         methods: {
             editData(tableNumber){

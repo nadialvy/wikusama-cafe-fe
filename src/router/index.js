@@ -7,7 +7,8 @@ import Table from "../views/Table.vue";
 import Order from "../views/Order.vue";
 import User from "../views/User.vue";
 import Login from "../views/Login.vue";
-import store from "../store/index.js"
+import Invoice from "../components/Invoice.vue";
+import store from "../store/index.js";
 
 const routes = [
     {
@@ -43,6 +44,12 @@ const routes = [
         path: "/order",
         name: "order",
         component: Order,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/invoice/:id',
+        name: 'invoice',
+        component: Invoice,
         meta: { requiresAuth: true }
     },
     {

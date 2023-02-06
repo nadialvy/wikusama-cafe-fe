@@ -28,7 +28,7 @@
                 <button v-on:click="getData()" @click="handleAllClick" :class="[!isAllClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white">All</button>
                 <button v-on:click="getDataFood()" @click="handleFoodClick" :class="[!isFoodClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white">Food</button>
                 <button v-on:click="getDataDrink()" @click="handleDrinkClick" :class="[!isDrinkClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white mr-96">Drink</button>
-                <button class="bg-orange-500 px-10 py-2 text-white text-sm rounded-2xl hover:bg-orange-600" v-on:click="resetForm()" @click="showModal = true">Add Menu +</button>
+                <button v-if="userRole === 'admin'" class="bg-orange-500 px-10 py-2 text-white text-sm rounded-2xl hover:bg-orange-600" v-on:click="resetForm()" @click="showModal = true">Add Menu</button>
             </div>
 
             <!-- list menu -->
@@ -113,10 +113,13 @@
                 isFoodClicked: false,
                 isDrinkClicked: false,
                 notFound: false,
+
+                userRole: "",
             }
         },
         mounted () {
             this.getData();
+            this.userRole = this.$store.state.auth.user.user.role;
         },
         watch:{
             searchKey: _.debounce(function(newVal){

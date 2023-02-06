@@ -8,8 +8,8 @@
             <div class="flex justify-around items-start gap-x-5">
                 <img src="../assets/user.jpg" alt="User Default Picture" class="w-10 rounded-lg">
                 <div>
-                    <p class="text-sm text-gray-500">Hi, Winter</p>
-                    <p class="text-sm text-gray-500">Cashier</p>
+                    <p class="text-sm text-gray-500">Hello, {{ userData.user.user_name }}!</p>
+                    <p class="text-sm text-gray-500">{{ userData.user.role }}</p>
                 </div>
             </div>
         </div>
@@ -21,6 +21,7 @@
     export default{
         data(){
             return{
+                userData: [],
                 currentDate: "",
                 months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             }
@@ -28,17 +29,25 @@
         methods:{
            // date
             getCurrentDate(){
-            let date = new Date();
-            let day = date.getDate();
-            let month = date.getMonth();
-            let year = date.getFullYear();
-            let dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                let date = new Date();
+                let day = date.getDate();
+                let month = date.getMonth();
+                let year = date.getFullYear();
+                let dayName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-            this.currentDate = dayName[date.getDay()] + ", " + (day < 10 ? '0' : '') + day + " - " + this.months[month] + " - " + year;
+                this.currentDate = dayName[date.getDay()] + ", " + (day < 10 ? '0' : '') + day + " - " + this.months[month] + " - " + year;
+            },
+
+        },
+        computed: {
+            userData() {
+                this.userData = JSON.parse(localStorage.getItem("user"));
+                return this.userData;
             }
         },
         mounted(){
-            this.getCurrentDate()
-        }
+            this.getCurrentDate();
+            // this.userData = JSON.parse(localStorage.getItem("user"));
+        },
     }
 </script>
