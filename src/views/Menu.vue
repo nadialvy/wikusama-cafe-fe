@@ -16,7 +16,7 @@
         <main class="w-10/12 flex-1 bg-orange-50 p-8 mt-16">
 
             <!-- search and add button -->
-            <div class="pb-8 flex justify-between items-center">
+            <div class="py-8 flex justify-between items-center">
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">

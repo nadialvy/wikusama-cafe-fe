@@ -17,7 +17,7 @@
     <main class="w-10/12 flex-1 bg-orange-50 p-8 mt-16">
 
       <!-- search and add button -->
-      <div class="pb-8 flex justify-between items-center">
+      <div class="pt-8 flex justify-between items-center">
           <div class="flex items-center justify-start gap-x-4" v-if="userRole === 'manager'">
               <div class="flex border-2 border-orange-500 rounded">
                   <input :disabled="isSearchDisabled" @click="handleSearch" @keyup.enter="search()" v-model="searchKey" type="text" class="px-4 text-sm opacity-70 placeholder-customBlack" placeholder="Search...">
