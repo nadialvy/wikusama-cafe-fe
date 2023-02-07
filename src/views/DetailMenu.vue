@@ -58,7 +58,7 @@ import "mosha-vue-toastify/dist/style.css";
             </div>
 
             <div class="border-t-2 my-4 border-orange-200"></div>
-            <div class="flex justify-start gap-x-7 my-6">
+            <div class="flex justify-start gap-x-7 my-6" v-if="userRole === 'admin'">
               <button
                 class="border border-orange-500 hover:bg-orange-500 rounded-full font-light text-orange-500 hover:text-white text-sm px-8 py-1"
                 @click="showModal = true"

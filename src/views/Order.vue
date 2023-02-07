@@ -28,7 +28,7 @@ import "@jobinsjp/vue3-datepicker/index.css";
               @keyup.enter="search()"
               v-model="searchKey"
               type="text"
-              class="px-4 text-sm opacity-70 placeholder-customBlack"
+              class="px-4 text-sm opacity-70 placeholder-gray-400"
               placeholder="Search..."
             />
             <button class="bg-orange-500" @click="searchKey = ''">
@@ -114,6 +114,7 @@ import "@jobinsjp/vue3-datepicker/index.css";
                         Table
                       </th>
                       <th
+                        v-if="userRole !== 'manager'"
                         scope="col"
                         class="text-sm font-semibold text-orange-500 px-6 py-4"
                       >
@@ -150,7 +151,12 @@ import "@jobinsjp/vue3-datepicker/index.css";
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
                       >
-                        <div v-if="order.status !== 'paid'" class="relative">
+                        <div
+                          v-if="
+                            order.status !== 'paid' && userRole !== 'manager'
+                          "
+                          class="relative"
+                        >
                           <button
                             @click="order.showDropdown = !order.showDropdown"
                             class="px-6 py-1 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded-full"
@@ -172,7 +178,17 @@ import "@jobinsjp/vue3-datepicker/index.css";
                         </div>
                         <div v-else>
                           <button
-                            class="px-6 py-1 bg-green-500 hover:bg-green-600 text-white text-xs font-medium rounded-full"
+                            :class="[
+                              'px-6',
+                              'py-1',
+                              'text-white',
+                              'text-xs',
+                              'font-medium',
+                              'rounded-full',
+                              userRole === 'manager' && order.status === 'pending'
+                                ? 'bg-red-500 hover:bg-red-600'
+                                : 'bg-green-500 hover:bg-green-600',
+                            ]"
                           >
                             {{ order.status }}
                           </button>
@@ -184,6 +200,7 @@ import "@jobinsjp/vue3-datepicker/index.css";
                         {{ order.table_number }}
                       </td>
                       <td
+                        v-if="userRole !== 'manager'"
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap hover:cursor-pointer"
                       >
                         <div

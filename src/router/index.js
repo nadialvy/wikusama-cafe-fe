@@ -8,6 +8,7 @@ import Order from "../views/Order.vue";
 import User from "../views/User.vue";
 import Login from "../views/Login.vue";
 import Invoice from "../components/Invoice.vue";
+import Profile from "../views/Profile.vue";
 import store from "../store/index.js";
 
 const routes = [
@@ -63,6 +64,12 @@ const routes = [
         next();
       }
     },
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
+    meta: { requiresAuth: true },
   },
 ];
 

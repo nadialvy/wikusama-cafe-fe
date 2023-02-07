@@ -30,6 +30,7 @@
           v-if="showDropdown"
         >
           <a
+            @click="goToProfile()"
             class="block px-14 py-2 rounded-lg text-sm text-blue-300 hover:bg-orange-200"
             >Profile</a
           >
@@ -115,6 +116,9 @@ export default {
           });
         }
       );
+    },
+    goToProfile() {
+      this.$router.push("/profile");
     },
   },
   computed: {

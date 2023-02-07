@@ -19,7 +19,8 @@ import Side from "./Side.vue";
             <img src="../assets/Category.svg" class="inline mr-5" />
             <a
               href="#"
-              class="text-gray-400 hover:text-orange-500 text-sm font-light"
+              :class="[$route.path === '/' ? 'text-orange-500 font-bold' : 'text-gray-300']"
+              class="text-sm hover:text-orange-500"
               >Dashboard</a
             >
             <div class="border-t-2 border-gray-200 mt-4"></div>
@@ -34,7 +35,8 @@ import Side from "./Side.vue";
                 <img src="../assets/menu.png" class="mr-5 w-5" />
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-orange-500 text-sm font-light"
+                  :class="[$route.path === '/menu' ? 'text-orange-500 font-bold' : 'text-gray-300']"
+                  class=" hover:text-orange-500 text-sm font-light"
                   >Menu</a
                 >
               </div>
@@ -49,7 +51,8 @@ import Side from "./Side.vue";
                 <img src="../assets/table.png" class="mr-5 w-5" />
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-orange-500 text-sm font-light"
+                  :class="[$route.path === '/table' ? 'text-orange-500 font-bold' : 'text-gray-300']"
+                  class="text-gray-300 hover:text-orange-500 text-sm font-light"
                   >Table</a
                 >
               </div>
@@ -64,7 +67,8 @@ import Side from "./Side.vue";
                 <img src="../assets/shopping-list.png" class="mr-5 w-5" />
                 <a
                   href="#"
-                  class="text-gray-400 hover:text-orange-500 text-sm font-light"
+                  :class="[$route.path === '/order' ? 'text-orange-500 font-bold' : 'text-gray-300']"
+                  class="text-gray-300 hover:text-orange-500 text-sm font-light"
                   >Order</a
                 >
               </div>
@@ -79,6 +83,7 @@ import Side from "./Side.vue";
                 <img src="../assets/man-user.png" class="mr-5 w-5" />
                 <a
                   href="#"
+                  :class="[$route.path === '/user' ? 'text-orange-500 font-bold' : 'text-gray-300']"
                   class="text-gray-400 hover:text-orange-500 text-sm font-light"
                   >User</a
                 >
