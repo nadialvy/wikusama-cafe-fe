@@ -616,7 +616,7 @@ export default {
           .catch((error) => {
             this.notFound = true;
             this.orders = [];
-            this.createAlert(error.response.data, "danger", 3000);
+            this.createAlert(error.response.data.message, "danger", 3000);
           });
       } else {
         this.isDatepickerDisabled = false;
@@ -642,7 +642,7 @@ export default {
           .catch((error) => {
             this.notFound = true;
             this.orders = [];
-            this.createAlert(error.response.data, "danger", 3000);
+            this.createAlert(error.response.data.message, "danger", 3000);
           });
       } else {
         this.isMonthpickerDisabled = false;
@@ -666,7 +666,7 @@ export default {
           .catch((error) => {
             this.notFound = true;
             this.orders = [];
-            this.createAlert(error.response.data, "danger", 3000);
+            this.createAlert(error.response.data.message, "danger", 3000);
           });
       } else {
         this.isSearchDisabled = false;
@@ -713,7 +713,7 @@ export default {
           this.totalPrice = response.data.total_price;
         })
         .catch((error) => {
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
     },
     // ui delete
@@ -732,7 +732,7 @@ export default {
           this.getData();
         })
         .catch((error) => {
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
     },
     // data table
@@ -755,7 +755,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
     },
     // get basic data to modal ui
@@ -767,7 +767,7 @@ export default {
           this.cashiers = response.data.data;
         })
         .catch((error) => {
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
 
       axios
@@ -776,7 +776,7 @@ export default {
           this.menus = response.data.data;
         })
         .catch((error) => {
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
 
       const url =
@@ -792,7 +792,7 @@ export default {
           this.loading = false;
         })
         .catch((error) => {
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
     },
     // modal add
@@ -813,7 +813,7 @@ export default {
           this.detailMenu = response.data.data;
         })
         .catch((error) => {
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
 
       this.showModal = true;
@@ -867,7 +867,7 @@ export default {
             this.getData();
           })
           .catch((error) => {
-            this.createAlert(error.response.message, "danger", 3000);
+            this.createAlert(error.response.data.message, "danger", 3000);
           });
       } else {
         axios
@@ -878,7 +878,7 @@ export default {
             this.getData();
           })
           .catch((error) => {
-            this.createAlert(error.response.data, "danger", 3000);
+            this.createAlert(error.response.data.message, "danger", 3000);
           });
       }
     },
@@ -908,7 +908,7 @@ export default {
           this.getData();
         })
         .catch((error) => {
-          this.createAlert(error.response.data, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
     },
 

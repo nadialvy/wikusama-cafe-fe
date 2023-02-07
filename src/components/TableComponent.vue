@@ -160,7 +160,7 @@ export default {
         })
         .catch((error) => {
           console.log(error);
-          this.createAlert(error.response.message, "danger", 3000);
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
     },
     deleteItem() {
