@@ -13,7 +13,7 @@ import BestSellerCard from "../components/BestSellerCard.vue";
     <main class="flex-1 p-8 mt-16">
       <div class="bg-dashboard">
         <div class="px-12 text-blue-300">
-          <p class="font-bold text-xl">Welcome, {{userData.username}}</p>
+          <p class="font-bold text-xl">Welcome, {{ userData.username }}</p>
           <p>Look whats new in your restaurant here!</p>
         </div>
       </div>
