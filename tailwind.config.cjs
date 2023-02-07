@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
+
 module.exports = {
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
@@ -25,5 +27,19 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities }){
+      const utilities = {
+        ".bg-dashboard": {
+          "background-image": "url(src/assets/hero-dashboard.svg)",
+          "background-size": "cover",
+          "background-position": "bottom",
+          "background-repeat": "no-repeat",
+          "padding": "8rem 0",
+          "border-radius": "10px",
+        }
+      }
+      addUtilities(utilities);
+    })
+  ],
 }

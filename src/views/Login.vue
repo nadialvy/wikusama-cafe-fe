@@ -64,7 +64,9 @@ export default {
             this.$store.dispatch('auth/login', form).then(
                 () => {
                     if(this.$store.state.auth.user.user.role === 'cashier' || this.$store.state.auth.user.user.role === 'admin'){
-                        this.$router.push('/menu');
+                      this.$router.push('/menu');
+                    }else{
+                      this.$router.push('/');
                     }
                     this.loading = false;
                 },

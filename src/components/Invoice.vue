@@ -52,7 +52,7 @@
                         </div>
                         <div class="w-1/3">
                             <p class="text-gray-500 text-sm text-right">Invoice of(IDR)</p>
-                            <p class="text-primaryYellow font-semibold text-3xl text-right">Rp{{ this.totalPrice }}</p>
+                            <p class="text-orange-500 font-semibold text-3xl text-right">Rp{{ this.totalPrice }}</p>
                             <p class="text-gray-500 text-sm text-right mt-4">Cashier :</p>
                             <p class="text-right text-sm">{{ this.orderDetail[0].user_name }}</p>
                         </div>

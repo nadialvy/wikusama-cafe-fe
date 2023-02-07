@@ -4,7 +4,7 @@
             <img :src="img" class="w-full h-full object-cover" />
         </div>
         <div class="w-48 h-56 px-4 relative bottom-20 bg-white hoverable hover:bg-orange-400 rounded-2xl shadow-lg">
-            <h2 class="pt-24 font-bold text-blue-300 text-start mt-4 truncate hover-white">{{ name }}</h2>
+            <h2 class="pt-24 font-bold text-blue-300 text-start mt-4 truncate">{{ name }}</h2>
             <img src="../assets/star.svg" class="mb-4 img-change" />
             <p class="font-semibold text-orange-500 mt-2 hover-white">Rp.{{ price }}</p>
         </div>

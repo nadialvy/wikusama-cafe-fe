@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <aside class="w-2/12 bg-white text-gray-500 h-full">
+  <aside class="w-2/12 bg-white text-gray-500 h-screen">
     <img src="../assets/wikusama-logo.svg" class="px-6 py-5"/>
     <div class="border-t-2 border-gray-200"></div>
     <nav>
@@ -19,7 +19,7 @@
             </router-link>
 
             <p class="text-gray-400 text-sm mb-4 mt-8">Pages</p>
-            <router-link to="/menu">
+            <router-link to="/menu" v-if="userRole !== 'manager'">
                 <li class="mb-6">
                     <div class="flex justify-between items-center">
                         <div class="flex justify-start">
@@ -30,7 +30,7 @@
                     </div>
                 </li>
             </router-link>
-            <router-link to="/table">
+            <router-link to="/table" v-if="userRole !== 'manager'">
                 <li class="mb-6">
                     <div class="flex justify-between items-center">
                         <div class="flex justify-start">

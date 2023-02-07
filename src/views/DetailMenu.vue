@@ -8,7 +8,7 @@
 </script>
 
 <template>
-    <div class="flex h-screen">
+    <div class="flex bg-orange-50 w-full">
         <Sidebar />
         <Navbar />
         <main class="flex-1 bg-orange-50 p-8 mt-16">

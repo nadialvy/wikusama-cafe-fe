@@ -11,7 +11,7 @@
 </script>
 
 <template>
-  <div class="flex h-screen">
+  <div class="flex bg-orange-50 w-full">
     <Sidebar />
     <Navbar />
     <main class="w-10/12 flex-1 bg-orange-50 p-8 mt-16">
@@ -36,7 +36,7 @@
             <img src="../assets/loading.gif" alt="Loading..." class="mx-auto w-20 my-20 py-56">
         </div>
         <div v-else>
-            <div class="flex flex-col pb-20">
+            <div class="flex flex-col">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="overflow-hidden">
