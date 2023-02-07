@@ -41,7 +41,7 @@
                     </div>
                 </li>
             </router-link>
-            <router-link to="/order">
+            <router-link to="/order" v-if="userRole !== 'admin'">
                 <li class="mb-6">
                     <div class="flex justify-between items-center">
                         <div class="flex justify-start">
