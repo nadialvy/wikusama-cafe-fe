@@ -13,7 +13,7 @@
         <Navbar />
         <main class="flex-1 bg-orange-50 p-8 mt-16">
             <div v-if="loading">
-                <img src="../assets/loading.gif" alt="Loading..." class="mx-auto my-auto w-20">
+                <img src="../assets/loading.gif" alt="Loading..." class="mx-auto my-auto w-20 py-56">
             </div>
             <div v-else>
                 <div class="flex justify-center items-start mt-8 gap-x-10">

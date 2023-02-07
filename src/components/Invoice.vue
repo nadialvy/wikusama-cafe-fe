@@ -5,7 +5,7 @@
 
 <template>
     <div v-if="loading">
-        <img src="../assets/loading.gif" class="mx-auto my-auto mt-80 w-32">
+        <img src="../assets/loading.gif" class="mx-auto my-auto mt-80 w-32 py-56">
     </div>
     <div v-else>
         <div>

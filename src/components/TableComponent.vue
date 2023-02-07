@@ -61,7 +61,7 @@
     export default{
         data(){
             return {
-                baseUrl: 'ttp://127.0.0.1:8000/api/table/',
+                baseUrl: 'http://127.0.0.1:8000/api/table/',
                 showConfirmDialog: false,
                 showModal: false,
 
@@ -75,13 +75,14 @@
             this.userRole = this.$store.state.auth.user.user.role;
         },
         methods: {
-            editData(tableNumber){
-                this.table_number = tableNumber;
+          editData(tableNumber){
+            this.table_number = tableNumber;
             },
             saveData(){
-                let form = {
-                    table_number: this.table_number,
+              let form = {
+                table_number: this.table_number,
                 }
+                  console.log('haloo')
 
                 let headers = authHeader();
 
@@ -93,7 +94,8 @@
                         });
                     }, 1500);
                 }).catch((error) => {
-                    this.createAlert(error.response.data.message, 'danger', 3000);
+                  console.log(error);
+                    this.createAlert(error.response.message, 'danger', 3000);
                 });
             },
             deleteItem(){

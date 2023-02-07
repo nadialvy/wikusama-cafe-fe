@@ -33,7 +33,7 @@
 
         <!-- table section -->
         <div v-if="loading">
-            <img src="../assets/loading.gif" alt="Loading..." class="mx-auto w-20 my-20">
+            <img src="../assets/loading.gif" alt="Loading..." class="mx-auto w-20 my-20 py-56">
         </div>
         <div v-else>
             <div class="flex flex-col pb-20">
@@ -43,17 +43,17 @@
                         <table class="min-w-full">
                             <thead class="bg-transparent border-b">
                                 <tr class="text-center">
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">#</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Date</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Staff</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Customer Name</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Payment Status</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Table</th>
-                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">Action</th>
+                                    <th scope="col" class="text-sm font-semibold text-orange-500 px-6 py-4">#</th>
+                                    <th scope="col" class="text-sm font-semibold text-orange-500 px-6 py-4">Date</th>
+                                    <th scope="col" class="text-sm font-semibold text-orange-500 px-6 py-4">Staff</th>
+                                    <th scope="col" class="text-sm font-semibold text-orange-500 px-6 py-4">Customer Name</th>
+                                    <th scope="col" class="text-sm font-semibold text-orange-500 px-6 py-4">Payment Status</th>
+                                    <th scope="col" class="text-sm font-semibold text-orange-500 px-6 py-4">Table</th>
+                                    <th scope="col" class="text-sm font-semibold text-orange-500 px-6 py-4">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(order, i) in orders" :key="i" class="bg-transparent border-b transition duration-300 text-center ease-in-out hover:bg-gray-100">
+                                <tr v-for="(order, i) in orders" :key="i" class="bg-transparent border-b transition duration-300 text-center ease-in-out hover:bg-orange-200">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ i+1 }}</td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-10 whitespace-nowrap">{{ order.order_date }}</td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ order.user_name }}</td>

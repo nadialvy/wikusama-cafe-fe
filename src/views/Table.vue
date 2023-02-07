@@ -23,13 +23,13 @@
                 <p class="ml-4 text-blue-300">Unavailable table</p>
             </div>
             <div>
-                <button v-if="userRole === 'admin'" class="border border-orange-500 px-10 py-1 text-orange-500 text-sm rounded-lg hover:bg-orange-500 hover:text-white" v-on:click="resetForm()" @click="showModal = true">Add Table +</button>
+                <button v-if="userRole === 'admin'" class="bg-orange-400 px-10 py-2 text-white text-sm rounded-2xl hover:bg-orange-500 hover:text-white" v-on:click="resetForm()" @click="showModal = true">Add Table</button>
             </div>
         </div>
 
         <!-- table section -->
         <div v-if="loading">
-          <img src="../assets/loading.gif" alt="Loading..." class="mx-auto my-auto w-20">
+          <img src="../assets/loading.gif" alt="Loading..." class="mx-auto my-auto w-20 py-56">
         </div>
         <div v-else>
           <div v-auto-animate class="flex flex-wrap justify-center items-center gap-x-10 mt-10">

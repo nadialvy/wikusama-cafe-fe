@@ -1,12 +1,12 @@
 <script setup>
-    import Sidebar from '../components/Sidebar.vue';
-    import Navbar from '../components/Navbar.vue';
-    import MenuCard from '../components/MenuCard.vue';
-    import axios from 'axios';
-    import { createToast } from 'mosha-vue-toastify';
-    import 'mosha-vue-toastify/dist/style.css';
-    import _ from 'lodash';
-    import authHeader from '../services/auth-header.js';
+  import Sidebar from '../components/Sidebar.vue';
+  import Navbar from '../components/Navbar.vue';
+  import MenuCard from '../components/MenuCard.vue';
+  import axios from 'axios';
+  import { createToast } from 'mosha-vue-toastify';
+  import 'mosha-vue-toastify/dist/style.css';
+  import _ from 'lodash';
+  import authHeader from '../services/auth-header.js';
 </script>
 
 <template>
@@ -23,17 +23,17 @@
                         <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                         </svg>
                     </span>
-                    <input @keyup.enter="search()" v-model="searchKey" type="text" class="pl-12 py-2 rounded-3xl text-gray-500 bg-white border placeholder:font-light placeholder:text-sm border-gray-200 focus:outline-none focus:bg-white" placeholder="Search...">
+                    <input @keyup.enter="search()" v-model="searchKey" type="text" class="pl-12 py-2 rounded-3xl text-gray-500 bg-white border placeholder:font-light placeholder:text-sm border-orange-300 focus:outline-none focus:bg-white" placeholder="Search...">
                 </div>
                 <button v-on:click="getData()" @click="handleAllClick" :class="[!isAllClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white">All</button>
                 <button v-on:click="getDataFood()" @click="handleFoodClick" :class="[!isFoodClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white">Food</button>
                 <button v-on:click="getDataDrink()" @click="handleDrinkClick" :class="[!isDrinkClicked ? 'border-orange-300 text-orange-300' : 'bg-orange-300 text-white']" class="border px-10 py-1 text-sm rounded-2xl hover:bg-orange-300 hover:text-white mr-96">Drink</button>
-                <button v-if="userRole === 'admin'" class="bg-orange-500 px-10 py-2 text-white text-sm rounded-2xl hover:bg-orange-600" v-on:click="resetForm()" @click="showModal = true">Add Menu</button>
+                <button v-if="userRole === 'admin'" class="bg-orange-400 px-10 py-2 text-white text-sm rounded-2xl hover:bg-orange-500" v-on:click="resetForm()" @click="showModal = true">Add Menu</button>
             </div>
 
             <!-- list menu -->
             <div v-if="loading">
-                <img src="../assets/loading.gif" alt="Loading..." class="mx-auto my-auto w-20">
+                <img src="../assets/loading.gif" alt="Loading..." class="mx-auto my-auto w-20 py-56">
             </div>
             <div v-else-if="notFound">
                 <p class="text-center text-2xl font-bold mt-32 mb-44">Menu Not Found</p>
