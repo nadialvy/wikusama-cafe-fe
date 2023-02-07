@@ -52,6 +52,7 @@ import "@jobinsjp/vue3-datepicker/index.css";
           ></date-picker>
         </div>
         <button
+          v-if="userRole === 'cashier'"
           v-on:click="resetForm()"
           @click="getDataModal()"
           class="bg-orange-500 px-10 py-2 text-white text-sm rounded-xl hover:bg-orange-600"
@@ -555,10 +556,8 @@ export default {
   mounted() {
     this.getData();
     this.userRole = this.$store.state.auth.user.user.role;
-    this.userRole = this.$store.state.auth.user.user.user_id;
   },
   created() {
-    this.userRole = this.$store.state.auth.user.user.user_id;
     let url = "";
     this.userRole = this.$store.state.auth.user.user.role;
     if (this.userRole === "cashier") {

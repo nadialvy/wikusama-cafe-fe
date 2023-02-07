@@ -17,50 +17,53 @@ import BestSellerCard from "../components/BestSellerCard.vue";
           <p>Look whats new in your restaurant here!</p>
         </div>
       </div> -->
-      <p class="font-semibold text-xl text-blue-300 mb-4">Dashboard</p>
-      <div class="flex flex-wrap justify-start gap-x-10 items-start">
-        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
-          <p class="text-blue-300 font-bold text-lg">Today's Total Order:</p>
-          <p class="text-red-500 font-semibold">{{ todayData.totalOrder }}</p>
-        </div>
-        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
-          <p class="text-blue-300 font-bold text-lg">Today's Revenue:</p>
-          <p class="text-red-500 font-semibold">Rp{{ todayData.revenue }}</p>
-        </div>
-        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
-          <p class="text-blue-300 font-bold text-lg">This Week Total Order:</p>
-          <p class="text-red-500 font-semibold">{{ thisWeekData.totalOrder }}</p>
-        </div>
-        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
-          <p class="text-blue-300 font-bold text-lg">This Week Revenue:</p>
-          <p class="text-red-500 font-semibold">Rp{{ thisWeekData.revenue }}</p>
-        </div>
+      <div v-if="loading">
+        <img
+          src="../assets/loading.gif"
+          alt="Loading..."
+          class="mx-auto my-auto w-20 py-56"
+        />
       </div>
-      <div class="py-10 flex">
-        <!-- <h1 class="font-bold text-blue-300 text-3xl text-center">
-          Top 6 Best Seller
-        </h1>
-        <h1 class="text-center text-orange-500 text-lg font-semibold mb-4">
-          From Our Menu
-        </h1> -->
-        <div class="bg-orange-200 rounded-lg w-1/2 mx-auto">
-          <canvas id="bestSellerChart"></canvas>
+      <div v-else>
+        <p class="font-semibold text-xl text-blue-300 mb-4">Dashboard</p>
+        <div class="flex flex-wrap justify-start gap-x-10 items-start">
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
+            <p class="text-blue-300 font-bold text-lg">Today's Total Order:</p>
+            <p class="text-red-500 font-semibold">{{ todayData.totalOrder }}</p>
+          </div>
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
+            <p class="text-blue-300 font-bold text-lg">Today's Revenue:</p>
+            <p class="text-red-500 font-semibold">Rp{{ todayData.revenue }}</p>
+          </div>
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
+            <p class="text-blue-300 font-bold text-lg">This Week Total Order:</p>
+            <p class="text-red-500 font-semibold">{{ thisWeekData.totalOrder }}</p>
+          </div>
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
+            <p class="text-blue-300 font-bold text-lg">This Week Revenue:</p>
+            <p class="text-red-500 font-semibold">Rp{{ thisWeekData.revenue }}</p>
+          </div>
         </div>
-        <div class="w-1/2">
-          <div class="flex flex-wrap justify-evenly gap-x-4 gap-y-4 items-start pt-10">
-            <div
-              v-for="(menu, i) in bestSeller"
-              :key="i"
-              @click="goToMenuDetail(menu.menu_id)"
-            >
-              <BestSellerCard
-                v-bind:img="
-                  'http://127.0.0.1:8000/images/' + menu.menu_image_name
-                "
-                v-bind:name="menu.menu_name"
-                v-bind:price="menu.price.toString()"
-                v-bind:description="menu.menu_description"
-              />
+        <div class="py-10 flex">
+          <div class="bg-orange-200 rounded-lg w-1/2 mx-auto">
+            <canvas id="bestSellerChart"></canvas>
+          </div>
+          <div class="w-1/2">
+            <div class="flex flex-wrap justify-evenly gap-x-4 gap-y-4 items-start pt-10">
+              <div
+                v-for="(menu, i) in bestSeller"
+                :key="i"
+                @click="goToMenuDetail(menu.menu_id)"
+              >
+                <BestSellerCard
+                  v-bind:img="
+                    'http://127.0.0.1:8000/images/' + menu.menu_image_name
+                  "
+                  v-bind:name="menu.menu_name"
+                  v-bind:price="menu.price.toString()"
+                  v-bind:description="menu.menu_description"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -75,6 +78,7 @@ export default {
   data() {
     return {
       baseUrl: "http://127.0.0.1:8000/api",
+      loading: false,
       bestSeller: [],
       userData: {},
 
@@ -83,6 +87,7 @@ export default {
     };
   },
   async mounted() {
+    this.loading = true;
     this.getTodayData();
     this.getThisWeekData();
     this.userData = this.$store.state.auth.user.user;
@@ -91,6 +96,7 @@ export default {
       .get("http://127.0.0.1:8000/api/menu/show/bestseller", { headers })
       .then((response) => {
         this.bestSeller = response.data.data;
+        this.loading = false;
       });
 
     const ctx = document.getElementById("bestSellerChart").getContext("2d");
@@ -142,6 +148,7 @@ export default {
       },
     });
     bestSellerChart;
+
   },
   methods: {
     goToMenuDetail(id) {

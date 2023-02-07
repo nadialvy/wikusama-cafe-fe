@@ -27,7 +27,7 @@ import Side from "./Side.vue";
         </router-link>
 
         <p class="text-gray-400 text-sm mb-4 mt-8">Pages</p>
-        <router-link to="/menu" v-if="userRole !== 'manager'">
+        <router-link to="/menu">
           <li class="mb-6">
             <div class="flex justify-between items-center">
               <div class="flex justify-start">
