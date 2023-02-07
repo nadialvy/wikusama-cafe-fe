@@ -5,12 +5,12 @@ import axios from "axios";
 </script>
 
 <template>
-  <div class="bg-orange-100 bg-cover w-full min-height-100vh">
+  <div class="bg-orange-100 bg-cover w-full h-full">
     <div v-if="loading" class="py-80">
       <img src="../assets/loading.gif" class="mx-auto my-auto w-20 h-20" />
     </div>
     <div v-else class="flex justify-between items-center">
-      <div class="w-1/3 px-12">
+      <div class="w-1/2 px-44">
         <div>
           <h1 class="text-blue-300 text-2xl text-center font-semibold">
             Sign In
@@ -53,8 +53,8 @@ import axios from "axios";
           </button>
         </div>
       </div>
-      <div class="w-2/3">
-        <img src="../assets/hero-login.svg" />
+      <div class="w-1/2">
+        <img src="../assets/hero-login.svg"/>
       </div>
     </div>
   </div>

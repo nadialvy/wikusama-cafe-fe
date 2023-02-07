@@ -10,39 +10,58 @@ import BestSellerCard from "../components/BestSellerCard.vue";
   <div class="flex bg-orange-50 w-full">
     <Sidebar />
     <Navbar />
-    <main class="flex-1 p-8 mt-16">
-      <div class="bg-dashboard">
+    <main class="flex-1 p-8 mt-20">
+      <!-- <div class="bg-dashboard">
         <div class="px-12 text-blue-300">
           <p class="font-bold text-xl">Welcome, {{ userData.username }}</p>
           <p>Look whats new in your restaurant here!</p>
         </div>
+      </div> -->
+      <p class="font-semibold text-xl text-blue-300 mb-4">Dashboard</p>
+      <div class="flex flex-wrap justify-start gap-x-10 items-start">
+        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
+          <p class="text-blue-300 font-bold text-lg">Today's Total Order:</p>
+          <p class="text-red-500 font-semibold">{{ todayData.totalOrder }}</p>
+        </div>
+        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
+          <p class="text-blue-300 font-bold text-lg">Today's Revenue:</p>
+          <p class="text-red-500 font-semibold">Rp{{ todayData.revenue }}</p>
+        </div>
+        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
+          <p class="text-blue-300 font-bold text-lg">This Week Total Order:</p>
+          <p class="text-red-500 font-semibold">{{ thisWeekData.totalOrder }}</p>
+        </div>
+        <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
+          <p class="text-blue-300 font-bold text-lg">This Week Revenue:</p>
+          <p class="text-red-500 font-semibold">Rp{{ thisWeekData.revenue }}</p>
+        </div>
       </div>
-      <div class="py-10">
-        <h1 class="font-bold text-blue-300 text-3xl text-center">
+      <div class="py-10 flex">
+        <!-- <h1 class="font-bold text-blue-300 text-3xl text-center">
           Top 6 Best Seller
         </h1>
         <h1 class="text-center text-orange-500 text-lg font-semibold mb-4">
           From Our Menu
-        </h1>
-        <div class="bg-orange-200 rounded-lg w-[650px] mx-auto">
+        </h1> -->
+        <div class="bg-orange-200 rounded-lg w-1/2 mx-auto">
           <canvas id="bestSellerChart"></canvas>
         </div>
-        <div
-          class="flex flex-wrap justify-center gap-x-8 gap-y-4 items-start pt-10"
-        >
-          <div
-            v-for="(menu, i) in bestSeller"
-            :key="i"
-            @click="goToMenuDetail(menu.menu_id)"
-          >
-            <BestSellerCard
-              v-bind:img="
-                'http://127.0.0.1:8000/images/' + menu.menu_image_name
-              "
-              v-bind:name="menu.menu_name"
-              v-bind:price="menu.price.toString()"
-              v-bind:description="menu.menu_description"
-            />
+        <div class="w-1/2">
+          <div class="flex flex-wrap justify-evenly gap-x-4 gap-y-4 items-start pt-10">
+            <div
+              v-for="(menu, i) in bestSeller"
+              :key="i"
+              @click="goToMenuDetail(menu.menu_id)"
+            >
+              <BestSellerCard
+                v-bind:img="
+                  'http://127.0.0.1:8000/images/' + menu.menu_image_name
+                "
+                v-bind:name="menu.menu_name"
+                v-bind:price="menu.price.toString()"
+                v-bind:description="menu.menu_description"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -55,11 +74,17 @@ import Chart from "chart.js/auto";
 export default {
   data() {
     return {
+      baseUrl: "http://127.0.0.1:8000/api",
       bestSeller: [],
       userData: {},
+
+      todayData: [],
+      thisWeekData: [],
     };
   },
   async mounted() {
+    this.getTodayData();
+    this.getThisWeekData();
     this.userData = this.$store.state.auth.user.user;
     let headers = authHeader();
     await axios
@@ -121,6 +146,18 @@ export default {
   methods: {
     goToMenuDetail(id) {
       this.$router.push({ path: `/menu/${id}` });
+    },
+    getTodayData() {
+      let headers = authHeader();
+      axios.get(this.baseUrl + "/todaydata", { headers }).then((response) => {
+        this.todayData = response.data.data;
+      });
+    },
+    getThisWeekData() {
+      let headers = authHeader();
+      axios.get(this.baseUrl + "/weekdata", { headers }).then((response) => {
+        this.thisWeekData = response.data.data;
+      });
     },
   },
 };
