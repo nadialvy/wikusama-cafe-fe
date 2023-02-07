@@ -36,7 +36,7 @@ import Side from "./Side.vue";
                 <a
                   href="#"
                   :class="[$route.path === '/menu' ? 'text-orange-500 font-bold' : 'text-gray-300']"
-                  class=" hover:text-orange-500 text-sm font-light"
+                  class=" hover:text-orange-500 text-sm"
                   >Menu</a
                 >
               </div>
@@ -52,7 +52,7 @@ import Side from "./Side.vue";
                 <a
                   href="#"
                   :class="[$route.path === '/table' ? 'text-orange-500 font-bold' : 'text-gray-300']"
-                  class="text-gray-300 hover:text-orange-500 text-sm font-light"
+                  class="hover:text-orange-500 text-sm"
                   >Table</a
                 >
               </div>
@@ -68,7 +68,7 @@ import Side from "./Side.vue";
                 <a
                   href="#"
                   :class="[$route.path === '/order' ? 'text-orange-500 font-bold' : 'text-gray-300']"
-                  class="text-gray-300 hover:text-orange-500 text-sm font-light"
+                  class="hover:text-orange-500 text-sm"
                   >Order</a
                 >
               </div>
@@ -84,7 +84,7 @@ import Side from "./Side.vue";
                 <a
                   href="#"
                   :class="[$route.path === '/user' ? 'text-orange-500 font-bold' : 'text-gray-300']"
-                  class="text-gray-400 hover:text-orange-500 text-sm font-light"
+                  class=" hover:text-orange-500 text-sm"
                   >User</a
                 >
               </div>

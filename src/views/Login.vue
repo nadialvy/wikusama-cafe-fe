@@ -44,7 +44,7 @@ import axios from "axios";
               required
             />
           </div>
-          <p class="text-orange-500 text-xs mb-10 text-end">Forgot Passowrd?</p>
+          <p @click="showAlert()" class="text-orange-500 text-xs mb-10 text-end hover:cursor-pointer">Forgot Passowrd?</p>
           <button
             v-on:click="handleLogin"
             class="bg-orange-500 w-full rounded-2xl text-white hover:bg-orange-600 py-2"
@@ -80,6 +80,20 @@ export default {
     }
   },
   methods: {
+    showAlert(){
+      createToast('To make password back to default, please ask an admin to reset the password. Thank you.', {
+        position: "top-right",
+        type: "info",
+        timeout: 5000,
+        dismissible: true,
+        pauseOnFocusLoss: true,
+        pauseOnHover: true,
+        closeOnClick: true,
+        closeButton: true,
+        icon: true,
+        rtl: false,
+      });
+    },
     handleLogin() {
       this.loading = true;
 

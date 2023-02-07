@@ -253,10 +253,13 @@ export default {
       description: "",
       price: "",
       menu_image: "",
+      
+      userRole: "",
     };
   },
   mounted() {
     this.getData();
+    this.userRole = this.$store.state.auth.user.user.role;
   },
   methods: {
     deleteItem() {
@@ -281,7 +284,6 @@ export default {
         .get(this.baseUrl + "menu/" + this.$route.params.id, { headers })
         .then((response) => {
           this.menu = response.data.data;
-          console.log(this.menu);
           this.loading = false;
         });
     },
@@ -329,10 +331,9 @@ export default {
       axios
         .post(this.baseUrl + "menuimage/" + this.menu_id, form, { headers })
         .then((response) => {
-          this.menu = response.data.data;
+          this.getData();
           this.showImageModal = false;
           this.createAlert(response.data.message, "success", 1500);
-          this.getData();
         })
         .catch((error) => {
           this.createAlert(error.response.data.message, "danger", 3000);

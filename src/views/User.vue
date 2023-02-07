@@ -127,6 +127,12 @@ import _ from "lodash";
                           class="flex justify-evenly items-center hover:cursor-pointer"
                         >
                           <img
+                            @click="showResetPassword(user.user_id)"
+                            src="../assets/lock.png"
+                            class="w-5 h-5"
+                            alt="Reset Password"
+                          />
+                          <img
                             @click="showModal = true"
                             v-on:click="editData(user)"
                             src="../assets/edit.png"
@@ -171,10 +177,41 @@ import _ from "lodash";
                 Cancel
               </button>
               <button
-                @click="deleteData(order_id)"
+                @click="deleteData(user_id)"
                 class="border border-orange-500 hover:bg-orange-500 hover:text-white py-1 px-10 text-orange-500 rounded-lg"
               >
                 Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- reset pass dialog -->
+      <div>
+        <div v-if="showDialogReset" class="fixed inset-0 z-50">
+          <div
+            class="absolute inset-0 bg-black opacity-50"
+            @click="showDialogReset = false"
+          ></div>
+          <div
+            class="top-80 relative pt-6 pb-8 px-6 mx-auto my-auto bg-white rounded-lg w-full h-full max-w-xl md:h-auto"
+          >
+            <p class="text-base font-medium">
+              Are you sure you want to reset this user's password to default?
+            </p>
+            <div class="flex justify-end mt-4">
+              <button
+                @click="showDialogReset = false"
+                class="bg-gray-300 hover:bg-gray-600 py-1 px-10 text-gray-700 hover:text-white rounded-lg mr-4"
+              >
+                Cancel
+              </button>
+              <button
+                @click="resetPass(user_id)"
+                class="border border-orange-500 hover:bg-orange-500 hover:text-white py-1 px-10 text-orange-500 rounded-lg"
+              >
+                Reset
               </button>
             </div>
           </div>
@@ -260,6 +297,7 @@ export default {
       // modal
       showDialog: false,
       showModal: false,
+      showDialogReset: false,
 
       // get data
       users: [],
@@ -312,6 +350,23 @@ export default {
         .then((response) => {
           this.notFound = false;
           this.users = response.data.data;
+        });
+    },
+    // reset password
+    showResetPassword(user_id) {
+      this.user_id = user_id;
+      this.showDialogReset = true;
+    },
+    resetPass() {
+      let headers = authHeader();
+      axios
+        .put(this.baseURL + "forgotpass/" + this.user_id, {}, { headers })
+        .then((response) => {
+          this.showDialogReset = false;
+          this.createAlert(response.data.message, "success", 1500);
+        })
+        .catch((error) => {
+          this.createAlert(error.response.data.message, "danger", 3000);
         });
     },
     // crud
