@@ -25,6 +25,12 @@ export const auth = {
       authService.logout();
       commit("logout");
     },
+    updateName({ commit }, name) {
+      commit("updateName", name);
+    },
+    updateUserName({ commit }, username) {
+      commit("updateUserName", username);
+    }
   },
   mutations: {
     loginSuccess(state, user) {
@@ -39,5 +45,13 @@ export const auth = {
       state.status.loggedIn = false;
       state.user = null;
     },
+    updateName(state, name) {
+      state.user.user.user_name = name;
+      localStorage.setItem("user", JSON.stringify(state.user));
+    },
+    updateUserName(state, username) {
+      state.user.user.user_username = username;
+      localStorage.setItem("user", JSON.stringify(state.user));
+    }
   },
 };
