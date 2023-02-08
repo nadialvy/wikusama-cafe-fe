@@ -107,7 +107,7 @@ import authHeader from "../services/auth-header.js";
           />
         </div>
         <button
-          v-on:click="saveData()"
+          v-on:click="editPass()"
           class="text-sm mt-4 mx-auto text-white bg-orange-500 py-2 w-full rounded-lg hover:bg-orange-600"
         >
           Edit Password
@@ -194,21 +194,35 @@ export default {
     back() {
       this.$router.push({ name: "Dashboard" });
     },
+    editPass(){
+      let headers = authHeader();
+      let form = {
+        old_password: this.oldPassword,
+        new_password: this.newPassword,
+        confirm_password: this.confirmPassword,
+      };
+
+      axios
+        .put(
+          this.baseUrl + 'updatepass/' + this.$store.state.auth.user.user.user_id,
+          form,
+          { headers }
+        )
+        .then((response) => {
+          this.createAlert(response.data.message, "success", 1500);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.createAlert(error.response.data.message, "danger", 1500);
+        });
+
+    },
     saveData() {
       let headers = authHeader();
       let url = "";
       let form = {};
 
-      if (this.action === "") {
-        form = {
-          old_password: this.oldPassword,
-          new_password: this.newPassword,
-          confirm_password: this.confirmPassword,
-        };
-
-        url = "updatepass/";
-        this.showEditPass = false;
-      } else if (this.action === "Name") {
+      if (this.action === "Name") {
         form = {
           user_name: this.name,
         };

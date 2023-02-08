@@ -8,7 +8,7 @@ import authHeader from "../services/auth-header.js";
     <img src="../assets/loading.gif" class="mx-auto my-auto mt-40 w-20 py-56" />
   </div>
   <div v-else>
-    <div>
+    <div class="h-screen">
       <div class="mx-auto my-auto invoice uppercase">
         <div class="text-center">
           <p class="text-4xl">INVOICE</p>
