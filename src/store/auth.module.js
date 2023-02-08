@@ -50,7 +50,7 @@ export const auth = {
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     updateUserName(state, username) {
-      state.user.user.user_username = username;
+      state.user.user.username = username;
       localStorage.setItem("user", JSON.stringify(state.user));
     }
   },

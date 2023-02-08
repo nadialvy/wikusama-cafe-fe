@@ -38,6 +38,7 @@ import axios from "axios";
               >Password</label
             >
             <input
+              @keyup.enter="handleLogin"
               type="password"
               v-model="password"
               class="mb-4 border border-orange-500 text-sm rounded-2xl block w-full p-2.5"

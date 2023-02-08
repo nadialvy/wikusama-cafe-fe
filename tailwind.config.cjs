@@ -37,6 +37,14 @@ module.exports = {
           "background-repeat": "no-repeat",
           "padding": "8rem 0",
           "border-radius": "10px",
+        },
+        ".bg-invoice": {
+          "background-image": "url(src/assets/paper-texture.jpg)",
+          "background-size": "cover",
+          "background-position": "bottom",
+          "background-repeat": "no-repeat",
+          "padding": "8rem 0",
+          "border-radius": "10px",
         }
       }
       addUtilities(utilities);
