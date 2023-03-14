@@ -126,7 +126,7 @@ import "@jobinsjp/vue3-datepicker/index.css";
                     <tr
                       v-for="(order, i) in orders"
                       :key="i"
-                      class="bg-transparent border-b transition duration-300 text-center ease-in-out hover:bg-orange-200"
+                      class="bg-transparent border-b text-center ease-in-out hover:bg-orange-200 transition-all duration-300"
                     >
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"

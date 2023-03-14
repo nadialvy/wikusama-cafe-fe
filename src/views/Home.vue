@@ -27,19 +27,19 @@ import BestSellerCard from "../components/BestSellerCard.vue";
       <div v-else>
         <p class="font-semibold text-xl text-blue-300 mb-4">Dashboard</p>
         <div class="flex flex-wrap justify-start gap-x-10 items-start">
-          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">Today's Total Order:</p>
             <p class="text-red-500 font-semibold">{{ todayData.totalOrder }}</p>
           </div>
-          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">Today's Revenue:</p>
             <p class="text-red-500 font-semibold">Rp{{ todayData.revenue }}</p>
           </div>
-          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4">
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">This Week Total Order:</p>
             <p class="text-red-500 font-semibold">{{ thisWeekData.totalOrder }}</p>
           </div>
-          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4">
+          <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">This Week Revenue:</p>
             <p class="text-red-500 font-semibold">Rp{{ thisWeekData.revenue }}</p>
           </div>
