@@ -136,7 +136,7 @@ import "@jobinsjp/vue3-datepicker/index.css";
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-10 whitespace-nowrap"
                       >
-                        {{ order.order_date }}
+                        {{ formatDate(order.order_date) }}
                       </td>
                       <td
                         class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
@@ -677,6 +677,17 @@ export default {
     }),
   },
   methods: {
+    // format date
+    formatDate(dateString) {
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', options);
+    },
     // search and filtering
     handleSearch() {
       this.isMonthpickerDisabled = true;
