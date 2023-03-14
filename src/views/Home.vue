@@ -11,12 +11,6 @@ import BestSellerCard from "../components/BestSellerCard.vue";
     <Sidebar />
     <Navbar />
     <main class="flex-1 p-8 mt-20">
-      <!-- <div class="bg-dashboard">
-        <div class="px-12 text-blue-300">
-          <p class="font-bold text-xl">Welcome, {{ userData.username }}</p>
-          <p>Look whats new in your restaurant here!</p>
-        </div>
-      </div> -->
       <div v-if="loading">
         <img
           src="../assets/loading.gif"
@@ -33,7 +27,7 @@ import BestSellerCard from "../components/BestSellerCard.vue";
           </div>
           <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">Today's Revenue:</p>
-            <p class="text-red-500 font-semibold">Rp{{ todayData.revenue }}</p>
+            <p class="text-red-500 font-semibold">{{ todayData.revenue }}</p>
           </div>
           <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">This Week Total Order:</p>
@@ -41,7 +35,7 @@ import BestSellerCard from "../components/BestSellerCard.vue";
           </div>
           <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">This Week Revenue:</p>
-            <p class="text-red-500 font-semibold">Rp{{ thisWeekData.revenue }}</p>
+            <p class="text-red-500 font-semibold">{{ thisWeekData.revenue }}</p>
           </div>
         </div>
         <div class="py-10 flex">
@@ -60,7 +54,7 @@ import BestSellerCard from "../components/BestSellerCard.vue";
                     'http://127.0.0.1:8000/images/' + menu.menu_image_name
                   "
                   v-bind:name="menu.menu_name"
-                  v-bind:price="menu.price.toString()"
+                  v-bind:price="formatPrice(menu.price)"
                   v-bind:description="menu.menu_description"
                 />
               </div>
@@ -151,6 +145,13 @@ export default {
 
   },
   methods: {
+    formatPrice(price) {
+      return price.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0
+      });
+    },
     goToMenuDetail(id) {
       this.$router.push({ path: `/menu/${id}` });
     },

@@ -24,7 +24,7 @@
       >
         {{ description }}
       </p>
-      <p class="text-orange-500 text-sm font-bold">Rp{{ price }}</p>
+      <p class="text-orange-500 text-sm font-bold">{{ price }}</p>
     </div>
   </div>
 </template>
