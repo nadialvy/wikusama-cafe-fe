@@ -1,3 +1,11 @@
+<script setup>
+const props = defineProps({
+  img: String,
+  name: String,
+  price: String,
+});
+</script>
+
 <template>
   <div class="flex flex-col items-center hover:cursor-pointer -mt-4">
     <div
@@ -14,19 +22,11 @@
       </h2>
       <img src="../assets/star.svg" class="mb-4 img-change" />
       <p class="font-semibold text-orange-500 mt-2 hover-white">
-        Rp.{{ price }}
+      {{ price }}
       </p>
     </div>
   </div>
 </template>
-
-<script setup>
-const props = defineProps({
-  img: String,
-  name: String,
-  price: String,
-});
-</script>
 
 <style>
 .hoverable:hover .hover-white {

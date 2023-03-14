@@ -108,7 +108,7 @@ import authHeader from "../services/auth-header.js";
                 'http://127.0.0.1:8000/images/' + menu.menu_image_name
               "
               v-bind:name="menu.menu_name"
-              v-bind:price="menu.price.toString()"
+              v-bind:price="formatPrice(menu.price)"
             />
           </div>
         </div>
@@ -277,6 +277,13 @@ export default {
     }),
   },
   methods: {
+    formatPrice(price) {
+      return price.toLocaleString("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        minimumFractionDigits: 0
+      });
+    },
     // filtering and search
     handleAllClick() {
       this.isAllClicked = !this.isAllClicked;
