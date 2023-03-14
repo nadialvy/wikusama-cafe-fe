@@ -27,7 +27,7 @@ import BestSellerCard from "../components/BestSellerCard.vue";
           </div>
           <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">Today's Revenue:</p>
-            <p class="text-red-500 font-semibold">{{ todayData.revenue }}</p>
+            <p class="text-red-500 font-semibold">Rp{{ todayData.revenue }}</p>
           </div>
           <div class="bg-orange-200 hover:bg-orange-300 rounded-lg pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">This Week Total Order:</p>
@@ -35,7 +35,7 @@ import BestSellerCard from "../components/BestSellerCard.vue";
           </div>
           <div class="bg-orange-200 hover:bg-orange-300 rounded-lg px-12 pr-10 pl-4 py-4 transition-colors duration-300">
             <p class="text-blue-300 font-bold text-lg">This Week Revenue:</p>
-            <p class="text-red-500 font-semibold">{{ thisWeekData.revenue }}</p>
+            <p class="text-red-500 font-semibold">Rp{{ thisWeekData.revenue }}</p>
           </div>
         </div>
         <div class="py-10 flex">
@@ -165,6 +165,7 @@ export default {
       let headers = authHeader();
       axios.get(this.baseUrl + "/weekdata", { headers }).then((response) => {
         this.thisWeekData = response.data.data;
+        console.log(this.thisWeekData);
       });
     },
   },
