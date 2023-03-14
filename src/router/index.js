@@ -9,6 +9,7 @@ import User from "../views/User.vue";
 import Login from "../views/Login.vue";
 import Invoice from "../components/Invoice.vue";
 import Profile from "../views/Profile.vue";
+import NotFound from "../views/NotFound.vue";
 import store from "../store/index.js";
 
 const routes = [
@@ -71,6 +72,11 @@ const routes = [
     component: Profile,
     meta: { requiresAuth: true },
   },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: NotFound,
+  }
 ];
 
 const router = createRouter({
